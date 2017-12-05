@@ -210,6 +210,3 @@ vendor/bin/codecept run functional,unit -- --coverage-html --coverage-xml
 
 You can see code coverage output under the `tests/_output` directory.
 
- TemplateWebTurtles
-This is a template for a competition in Timisoara, Romania. 
- ba0e99a63b3eff05f7c872fe0f5bc16ea41617e9
