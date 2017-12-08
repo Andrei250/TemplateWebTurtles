@@ -19,7 +19,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    
+    <link href='https://fonts.googleapis.com/css?family=Bungee' rel='stylesheet'>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

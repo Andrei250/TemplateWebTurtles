@@ -3,15 +3,20 @@ body {
     height: 100%;
 }
 
+h1 { 
+   position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: 'Bungee';
+    font-size: 100px;
+}
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -60px;
+    margin: 0 auto 0px;
     padding: 0 0 60px;
-}
-
-.wrap > .container {
-    padding: 70px 15px 20px;
 }
 
 .footer {
@@ -101,7 +106,7 @@ a.desc:after {
         display:block;
         text-align: left;
         width: 100%;
-        padding: 10px 15px;
+       padding: 10px 15px;
     }
 }
 
