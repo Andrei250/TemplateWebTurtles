@@ -16,7 +16,7 @@ use yii\helpers\Url;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
+
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <link href='https://fonts.googleapis.com/css?family=Bungee' rel='stylesheet'>
@@ -38,10 +38,11 @@ AppAsset::register($this);
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="<?= Url::to(['site/index']);?>" style="padding:12px 16px" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"> Home</i></a>
   <?php
   if (!Yii::$app->user->isGuest){
     ?>
-  <a href="<?= Url::to(['site/index']);?>" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"> Home</i></a>
+ 
   <a href="<?= Url::to(['site/index']);?>/#team" class="w3-bar-item w3-hide-small w3-hover-white">Team</a>
   <a href="<?= Url::to(['site/index']);?>/#work" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Work</a>
   <a href="<?= Url::to(['site/index']);?>/#pricing" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
@@ -49,19 +50,10 @@ AppAsset::register($this);
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
   <a href="<?= Url::to(['site/logout']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
   <?php } else {
-  NavBar::begin([
-        'options' => [
-            'class' => 'w3-bar w3-theme-d2 w3-left-align w3-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'w3-bar-item w3-button w3-hide-small w3-hover-white'],
-        'items' => [
-            ['label' => 'Register', 'url' => ['/site/register']],
-            ['label' => 'Login', 'url' => ['/site/login']]
-          ],
-    ]);
-    NavBar::end();
+    ?>
+    <a href="<?= Url::to(['site/login']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Login</a>
+    <a href="<?= Url::to(['site/register']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Register</a>
+  <?php
   }
   ?>
  </div>
@@ -78,30 +70,18 @@ AppAsset::register($this);
     <a href="<?= Url::to(['/site/logout']); ?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
 
     <?php } else {
-  NavBar::begin([
-        'options' => [
-            'class' => 'w3-bar w3-theme-d2 w3-left-align w3-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'w3-bar-item w3-button w3-hide-small w3-hover-white'],
-        'items' => [
-            ['label' => 'Register', 'url' => ['/site/register']],
-            ['label' => 'Login', 'url' => ['/site/login']]
-          ],
-    ]);
-    NavBar::end();
+    ?>
+    <a href="<?= Url::to(['site/login']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Login</a>
+    <a href="<?= Url::to(['site/register']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Register</a>
+  <?php
   }
   ?>
   
   </div>
 </div>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
+    <div class="container" style="width: 100%; margin:0; padding: 0;">
+        
         <?= $content ?>
     </div>
 </div>
