@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
+$this->title = 'Register';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -19,14 +19,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>
-
+        <?= $form->field($model, 'first_name')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'last_name')->textInput(['autofocus' => true]) ?>
         <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
-
         <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'address')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'age')->textInput([
+                                 'type' => 'number'
+                            ]) ?>
+        <?= $form->field($model, 'gender')->radioList(array('1'=>'Male',2=>'Female')); ?>
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             </div>
         </div>
 

@@ -9,6 +9,9 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\bootstrap\Button;
+use yii\web\UrlManager;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -30,42 +33,67 @@ AppAsset::register($this);
 
 <div class="wrap">
 
-<nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
-    <i class="fa fa-remove"></i>
-  </a>
-  <a href="#" class="w3-bar-item w3-button">Link 1</a>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
-  <a href="#" class="w3-bar-item w3-button">Link 4</a>
-  <a href="#" class="w3-bar-item w3-button">Link 5</a>
-</nav>
+
 
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"></i>Logo</a>
-  <a href="#team" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Team</a>
-  <a href="#work" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Work</a>
-  <a href="#pricing" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
-    <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button" title="Notifications">Dropdown <i class="fa fa-caret-down"></i></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-      <a href="#" class="w3-bar-item w3-button">Link</a>
-      <a href="#" class="w3-bar-item w3-button">Link</a>
-      <a href="#" class="w3-bar-item w3-button">Link</a>
-    </div>
-  </div>
+  <?php
+  if (!Yii::$app->user->isGuest){
+    ?>
+  <a href="<?= Url::to(['site/index']);?>" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"> Home</i></a>
+  <a href="<?= Url::to(['site/index']);?>/#team" class="w3-bar-item w3-hide-small w3-hover-white">Team</a>
+  <a href="<?= Url::to(['site/index']);?>/#work" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Work</a>
+  <a href="<?= Url::to(['site/index']);?>/#pricing" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
+  <a href="<?= Url::to(['site/index']);?>/#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
+  <a href="<?= Url::to(['site/logout']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
+  <?php } else {
+  NavBar::begin([
+        'options' => [
+            'class' => 'w3-bar w3-theme-d2 w3-left-align w3-top',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'w3-bar-item w3-button w3-hide-small w3-hover-white'],
+        'items' => [
+            ['label' => 'Register', 'url' => ['/site/register']],
+            ['label' => 'Login', 'url' => ['/site/login']]
+          ],
+    ]);
+    NavBar::end();
+  }
+  ?>
  </div>
 
   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
-    <a href="#team" class="w3-bar-item w3-button">Team</a>
-    <a href="#work" class="w3-bar-item w3-button">Work</a>
-    <a href="#pricing" class="w3-bar-item w3-button">Price</a>
-    <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+    <?php
+  if (!Yii::$app->user->isGuest){
+    ?>
+    <a href="<?= Url::to(['site/index']);?>/#team" class="w3-bar-item w3-button">Team</a>
+    <a href="<?= Url::to(['site/index']);?>/#work" class="w3-bar-item w3-button">Work</a>
+    <a href="<?= Url::to(['site/index']);?>/#pricing" class="w3-bar-item w3-button">Price</a>
+    <a href="<?= Url::to(['site/index']);?>/#contact" class="w3-bar-item w3-button">Contact</a>
     <a href="#" class="w3-bar-item w3-button">Search</a>
+    <a href="<?= Url::to(['/site/logout']); ?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
+
+    <?php } else {
+  NavBar::begin([
+        'options' => [
+            'class' => 'w3-bar w3-theme-d2 w3-left-align w3-top',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'w3-bar-item w3-button w3-hide-small w3-hover-white'],
+        'items' => [
+            ['label' => 'Register', 'url' => ['/site/register']],
+            ['label' => 'Login', 'url' => ['/site/login']]
+          ],
+    ]);
+    NavBar::end();
+  }
+  ?>
+  
   </div>
 </div>
 

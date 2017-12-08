@@ -9,12 +9,16 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Member;
+use yii\db\ActiveRecord;
+use yii\db\ActiveQueryInterface;
+use yii\helpers\Json;
+use yii\web\IdentityInterface;
+use app\models\User;
 
 class SiteController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
+    
     public function behaviors()
     {
         return [
@@ -30,17 +34,12 @@ class SiteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
+                'class' => VerbFilter::className()
             ],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
+  
     public function actions()
     {
         return [
@@ -54,53 +53,102 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
+   
     public function actionIndex()
     {
         return $this->render('index');
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
+    
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        $model = new Member();
+        
+        if ($model->load(Yii::$app->request->post()) ) {
+            $identity = Member::findOne(['email' => $model->email]);
+            if($identity && Yii::$app->getSecurity()->validatePassword($model->password, $identity->password)){
+                Yii::$app->user->login($identity);
+                return $this->goHome();
+            }
+            else{
+                return $this->render('login', [
+                            'model' => $model,
+                        ]);
+            }
         }
         return $this->render('login', [
             'model' => $model,
         ]);
+            
     }
 
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
+    public function actionRegister()
+    {
+
+        function getCoordinates($address){
+            $address = urlencode($address);
+            $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
+            $response = file_get_contents($url);
+            $json = json_decode($response,true);
+         
+            $lat = $json['results'][0]['geometry']['location']['lat'];
+            $lng = $json['results'][0]['geometry']['location']['lng'];
+         
+            return array($lat, $lng);
+        }
+
+        $model = new Member();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $check = Member::findOne(["email" => $model->email]);
+         
+            if($check)
+            {
+                die(var_dump($model->getErrors()));
+                return $this->render('register', ['model' => $model]);
+            }
+            else
+            {
+
+                if($model->gender==1)
+                    $model->gender='M';
+                else
+                    $model->gender='F';
+
+                $model->password=Yii::$app->getSecurity()->generatePasswordHash($model->password);
+
+                $coords = getCoordinates($model->address);
+
+                $model->lat = $coords[0];
+                $model->lng = $coords[1];
+
+                $model->save();
+
+                return $this->render('reg-conf');
+            }
+
+
+       
+
+        } else {
+            // either the page is initially displayed or there is some validation error
+            return $this->render('register', ['model' => $model]);
+        }
+
+    }
+
+    
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
-        return $this->goHome();
+        return $this->goHome(); 
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
+    
     public function actionContact()
     {
         $model = new ContactForm();
@@ -114,13 +162,13 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
+  
     public function actionAbout()
     {
         return $this->render('about');
     }
+ 
+
+
+
 }
