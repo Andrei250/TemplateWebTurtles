@@ -7,20 +7,6 @@ use yii\base\Model;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
-/**
- * This is the model class for table "member".
- *
- * @property string $id
- * @property string $first_name
- * @property string $last_name
- * @property string $email
- * @property string $isadmin
- * @property string $password
- * @property integer $age
- * @property string $gender
- * @property double $lat
- * @property double $lng
- */
 class Member extends \yii\db\ActiveRecord implements IdentityInterface
 { 
 
@@ -132,5 +118,5 @@ class Member extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->getAuthKey() === $authKey;
     }
-  
+
 }

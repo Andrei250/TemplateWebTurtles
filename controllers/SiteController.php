@@ -105,7 +105,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $check = Member::findOne(["email" => $model->email]);
             if($check)
-            {
+            { 
                 return $this->render('register', ['model' => $model]);
             }
             else
@@ -117,20 +117,16 @@ class SiteController extends Controller
                     $model->gender='F';
 
                 $model->password=Yii::$app->getSecurity()->generatePasswordHash($model->password);
-
-
                 $coords = getCoordinates($model->address);
 
                 $model->lat = $coords[0];
                 $model->lng = $coords[1];
-
-
                 $model->save();
                 return $this->render('reg-conf.php');
             }
+       
 
         } else {
-           
             return $this->render('register', ['model' => $model]);
         }
 

@@ -16,7 +16,6 @@ use yii\web\IdentityInterface;
 use app\models\User;
 use app\models\Comments;
 use app\models\Votedcomments;
-
 class CommentsController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -44,6 +43,7 @@ class CommentsController extends \yii\web\Controller
 
 	 	return $this->render('add', ['model' => $model]);	
     }
+
 
     public function actionPlus($id)
     {
@@ -75,9 +75,9 @@ class CommentsController extends \yii\web\Controller
     		$model2->member_id = Yii::$app->user->id;
     		$model2->save();
     		$model = Comments::find()->where(['id'=>$id])->one();
-    		$model->nr_dislikesdislikes=$model->nr_dislikes+1;
+    		$model->nr_dislikes=$model->nr_dislikes+1;
     		$model->update();
-    		return $this->render('minus');
+    		return $this->render('plus');
     	}
     }
 

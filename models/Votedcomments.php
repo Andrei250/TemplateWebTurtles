@@ -4,16 +4,6 @@ namespace app\models;
 
 use Yii;
 
-/**
- * This is the model class for table "votedcomments".
- *
- * @property integer $int
- * @property string $member_id
- * @property integer $comm_id
- *
- * @property Comments $comm
- * @property Member $member
- */
 class Votedcomments extends \yii\db\ActiveRecord
 {
     /**

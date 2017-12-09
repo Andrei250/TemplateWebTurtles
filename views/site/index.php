@@ -1,5 +1,6 @@
 <?php
 
+
 use app\models\Member;
 use app\models\Comments;
 use yii\helpers\Html;
@@ -17,6 +18,7 @@ use yii\helpers\Json;
 use yii\web\IdentityInterface;
 use app\models\User;
 use app\models\Votedcomments;
+
 /* @var $this yii\web\View */
 
 $this->title = 'WEBTURTLES';
@@ -49,7 +51,7 @@ $this->title = 'WEBTURTLES';
 
     <!-- Image Header -->
 <div class="w3-display-container w3-animate-opacity">
-  <img src="/../TemplateWebTurtles/imagini/city4k.jpg" alt="city" style="width:100%; height:auto">
+  <img src="/../TemplateWebTurtles/imagini/city4kk.jpg" alt="city" style="width:100%; height:auto">
 </div>
 </div>
  
@@ -85,6 +87,7 @@ $this->title = 'WEBTURTLES';
 }
   </style>
 <body>
+
 <?php if(!Yii::$app->user->isGuest){
   ?>
 <a href="<?= Url::to(['comments/add']);?>" class="btn btn-success" style="margin:5px auto;">Add a Comment</a>
@@ -108,7 +111,7 @@ $this->title = 'WEBTURTLES';
           <br>
        <?php
         $check = Votedcomments::find()->where(['member_id'=>Yii::$app->user->id,'comm_id'=>$comment->id])->one();
-        if($comment->member_id != Yii::$app->user->id && !$check)
+        if($comment->member_id != Yii::$app->user->id && !$check && !Yii::$app->user->isGuest)
         {
           ?>
               <div class="vote">
@@ -126,12 +129,6 @@ $this->title = 'WEBTURTLES';
    ?>  
 
 </div>
-</body>
-  <script type="text/javascript">
-       $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-      })
-    </script>
 <script>
 var likes=0, dislikes=0;
 
@@ -168,45 +165,102 @@ calculateBar();
 
 
  <!--Harta-->
-
-  <body>
+ 
+  <head>
+    <title>Remove Markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 500px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 500px;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        bottom: : auto;
+        left: 38%;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 15px;
+        padding-left: 10px;
+        z-index: 100;
+      }
+    </style>
+  </head>
+  
+    <div id="floating-panel">
+      <input onclick="clearMarkers();" type=button value="Hide Markers">
+      <input onclick="showMarkers();" type=button value="Show All Markers">
+      <input onclick="deleteMarkers();" type=button value="Delete Markers">
+    </div>
     <div id="map"></div>
-  </body>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6gbdwEmwQ3d2_-Q-qfNFrrjwl4-79BAM"></script>
     <script>
-     
+
       // In the following example, markers appear when the user clicks on the map.
-      // Each marker is labeled with a single alphabetical character.
-      var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      var labelIndex = 0;
+      // The markers are stored in an array.
+      // The user can then click an option to hide, show or delete the markers.
+      var map;
+      var markers = [];
 
-      function initialize() {
-        var bangalore = { lat: 12.97, lng: 77.59 };
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: bangalore
+      function initMap() {
+        var city = {lat: 45.75, lng: 21.226};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: city,
+          mapTypeId: 'terrain'
         });
 
-        // This event listener calls addMarker() when the map is clicked.
-        google.maps.event.addListener(map, 'click', function(event) {
-          addMarker(event.latLng, map);
+        // This event listener will call addMarker() when the map is clicked.
+        map.addListener('click', function(event) {
+          addMarker(event.latLng);
         });
 
-        // Add a marker at the center of the map.
-        addMarker(bangalore, map);
+        // Adds a marker at the center of the map.
+        addMarker(city);
       }
 
-      // Adds a marker to the map.
-      function addMarker(location, map) {
-        // Add the marker at the clicked location, and add the next-available label
-        // from the array of alphabetical characters.
+      // Adds a marker to the map and push to the array.
+      function addMarker(location) {
         var marker = new google.maps.Marker({
           position: location,
-          label: labels[labelIndex++ % labels.length],
           map: map
         });
+        markers.push(marker);
       }
 
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+      // Sets the map on all markers in the array.
+      function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
 
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setMapOnAll(null);
+      }
+
+      // Shows any markers currently in the array.
+      function showMarkers() {
+        setMapOnAll(map);
+      }
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6gbdwEmwQ3d2_-Q-qfNFrrjwl4-79BAM&callback=initMap">
+    </script>
+ 

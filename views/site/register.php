@@ -3,13 +3,16 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+
 $this->title = 'Register';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
+</br>
+    <h2 style="font-family: Bungee">Hello!</h2>
 
-    <p>Please fill out the following fields to login:</p>
+    <p  style="font-family: Bungee">Please fill out the following fields to register:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -34,7 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             </div>
         </div>
-
+</br>
     <?php ActiveForm::end(); ?>
 
 </div>
+<body class="backgr"></body>
