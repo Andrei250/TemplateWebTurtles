@@ -34,7 +34,7 @@ AppAsset::register($this);
 <body id="myPage">
 <?php $this->beginBody() ?>
 
-<div class="wrap">
+<div class="wrap" style="padding-bottom: 0px;">
 
 
 <div class="w3-top">
@@ -45,6 +45,7 @@ AppAsset::register($this);
   <?php
   if (!Yii::$app->user->isGuest){
     ?>
+
   <a  style="font-family: Bungee" href="<?= Url::to(['site/logout']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
   <?php } else {
     ?>
@@ -59,7 +60,9 @@ AppAsset::register($this);
     <?php
   if (!Yii::$app->user->isGuest){
     ?>
+
     <a href="<?= Url::to(['/site/logout']); ?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
+
     <?php } else {
     ?>
     <a  style="font-family: Bungee" href="<?= Url::to(['site/login']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Login</a>

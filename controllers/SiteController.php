@@ -158,8 +158,8 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    public function actionProfile(){
+        return $this->render('profile');
+    }
  
-
-
-
 }

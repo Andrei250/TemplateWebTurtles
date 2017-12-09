@@ -11,6 +11,9 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+.w3-bar .w3-bar-item {
+    padding: 12px 16px !important
+    }
 
 .backgr_login{
 background: url(/../TemplateWebTurtles/imagini/city.jpg) no-repeat center center fixed; 
