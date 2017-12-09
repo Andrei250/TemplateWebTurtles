@@ -1,8 +1,15 @@
 html,
 body {
     height: 100%;
+    background-size: cover;
 }
-
+.backgr{
+    background: url(/../TemplateWebTurtles/imagini/night.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 h1 { 
    position: absolute;
     top: 50%;
@@ -10,17 +17,41 @@ h1 {
     transform: translate(-50%, -50%);
     color: white;
     font-family: 'Bungee';
-    font-size: 100px;
+    font-size: 10px;
+}
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{
+    position: relative;
+    min-height: 1px;
+    left:30px;
+    padding-right: 45px;
+    padding-left: 45px;
+    font-size: 15px;
+}
+.site-login {
+    font-family: Bungee;
+    position: relative;
+    margin: 5% auto;
+    width: 580px;
+    height: auto;
+    background: #FFF;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+.form-control{
+    width: 300px;
+    font-size: 15;
+    font-family: Arial;
 }
 .wrap {
     min-height: 100%;
     height: auto;
     margin: 0 auto 0px;
-    padding: 0 0 60px;
+    padding: 0 0 0px;
 }
 
 .footer {
-    height: 60px;
+    height: 30px;
     background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     padding-top: 20px;
@@ -50,7 +81,6 @@ a.asc:after, a.desc:after {
     font-style: normal;
     font-weight: normal;
     line-height: 1;
-    padding-left: 5px;
 }
 
 a.asc:after {
@@ -119,4 +149,21 @@ a.desc:after {
     outline: none;
 }
 
+a {
+  padding-left: 5px;
+}
 
+/* some simple transitions to make the upvote and downvote
+buttons fade in as a visual cue for the user */
+
+.glyphicon {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+}
+
+.glyphicon:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
