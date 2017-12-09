@@ -36,11 +36,11 @@ AppAsset::register($this);
 <div class="wrap">
 
 
-
+<div class="allmain">
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="<?= Url::to(['site/index']);?>" style="padding:12px 16px" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right"> Home</i></a>
+  <a href="<?= Url::to(['site/index']);?>" style="padding:12px 16px" class="w3-bar-item w3-button w3-teal"><i  style="font-family: Bungee"> Home</i></a>
   <?php
   if (!Yii::$app->user->isGuest){
     ?>
@@ -50,11 +50,11 @@ AppAsset::register($this);
   <a href="<?= Url::to(['site/index']);?>/#pricing" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Price</a>
   <a href="<?= Url::to(['site/index']);?>/#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search"></i></a>
-  <a href="<?= Url::to(['site/logout']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
+  <a  style="font-family: Bungee" href="<?= Url::to(['site/logout']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
   <?php } else {
     ?>
-    <a href="<?= Url::to(['site/login']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Login</a>
-    <a href="<?= Url::to(['site/register']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Register</a>
+    <a  style="font-family: Bungee" href="<?= Url::to(['site/login']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Login</a>
+    <a  style="font-family: Bungee" href="<?= Url::to(['site/register']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Register</a>
   <?php
   }
   ?>
@@ -73,8 +73,8 @@ AppAsset::register($this);
 
     <?php } else {
     ?>
-    <a href="<?= Url::to(['site/login']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Login</a>
-    <a href="<?= Url::to(['site/register']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Register</a>
+    <a  style="font-family: Bungee" href="<?= Url::to(['site/login']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Login</a>
+    <a  style="font-family: Bungee" href="<?= Url::to(['site/register']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Register</a>
   <?php
   }
   ?>
@@ -89,13 +89,13 @@ AppAsset::register($this);
 </div>
 
 <footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
-  <h4>Follow Us</h4>
+  <h4 style="font-family: Bungee">Follow Us</h4>
   <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Facebook"><i class="fa fa-facebook"></i></a>
   <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Twitter"><i class="fa fa-twitter"></i></a>
   <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a>
   <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-instagram"></i></a>
   <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-  <p>Powered by WEBTURTLES</p>
+  <p style="font-family: Bungee">Powered by WEBTURTLES</p>
 
   <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
     <span class="w3-text w3-padding w3-teal w3-hide-small">Go To Top</span>   
@@ -103,6 +103,7 @@ AppAsset::register($this);
     <i class="fa fa-chevron-circle-up"></i></span></a>
   </div>
 </footer>
+</div>
 
 <script>
 // Script for side navigation

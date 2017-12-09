@@ -9,7 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
-    <h1> HELLO! :D </h1>
+    <h1 style="font-family: Bungee"> WELCOME! :D </h1>
     
 
 </div>

@@ -10,6 +10,15 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+
+.backgr_login{
+background: url(/../TemplateWebTurtles/imagini/city.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 h1 { 
    position: absolute;
     top: 50%;
@@ -167,3 +176,8 @@ buttons fade in as a visual cue for the user */
   opacity: 0.75;
   cursor: pointer;
 }
+
+.allmain{
+    font-family: Bungee;
+}
+

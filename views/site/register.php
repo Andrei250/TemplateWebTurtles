@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </br>
     <h2 style="font-family: Bungee">Hello!</h2>
 
-    <p  style="font-family: Bungee">Please fill out the following fields to login:</p>
+    <p  style="font-family: Bungee">Please fill out the following fields to register:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
