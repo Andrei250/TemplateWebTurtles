@@ -10,6 +10,9 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
+.w3-bar .w3-bar-item {
+    padding: 12px 16px !important
+    }
 
 .backgr_login{
 background: url(/../TemplateWebTurtles/imagini/city.jpg) no-repeat center center fixed; 
@@ -164,9 +167,7 @@ a.desc:after {
 }
 
 .comm-content{
-    border: 1px solid black;
     color:black;
-    background-color: #f2f2f2;
     width: 100%;
     padding: 10px;
     margin:10px 0;
@@ -179,10 +180,16 @@ a.desc:after {
     margin:0 auto;
     height: auto;
 }
-
+.background0{
+    background: url(/../TemplateWebTurtles/imagini/ny.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .vote-btn{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     font-size: 40px;
 }
 .vote{
@@ -190,7 +197,13 @@ a.desc:after {
     text-align: center;
 }
 
- 
+ .backgr_reg_conf{
+    background: url(/../TemplateWebTurtles/imagini/max.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ }
 
 a {
   padding-left: 5px;

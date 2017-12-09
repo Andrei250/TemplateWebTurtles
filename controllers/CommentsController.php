@@ -59,6 +59,7 @@ class CommentsController extends \yii\web\Controller
     	else
     	{
             $model = Comments::find()->where(['id'=>$id])->one();
+            if($model->istrash == '0'){
             if(!$model->istrash ){
                 $model->nr_likes=$model->nr_likes+1;
                 $model->update();
@@ -72,6 +73,7 @@ class CommentsController extends \yii\web\Controller
             }
     	}
     }
+}
 
     public function actionMinus($id)
     {
@@ -81,7 +83,10 @@ class CommentsController extends \yii\web\Controller
     	else
     	{
             $model = Comments::find()->where(['id'=>$id])->one();
-            if(!$model->istrash ){
+            if($model->istrash == '0')
+            {
+            if(!$model->istrash )
+            {
                 $model->nr_dislikes=$model->nr_dislikes+1;
                 $model->update();
         		$model2 = new Votedcomments;
@@ -89,11 +94,13 @@ class CommentsController extends \yii\web\Controller
         		$model2->member_id = Yii::$app->user->id;
         		$model2->save();
         		return $this->render('plus');
-            } else {
+            } else 
+            {
             return $this->redirect(['site/index']);
             }
     	}
     }
+}
 
     public function actionDelete($id)
     {

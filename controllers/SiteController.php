@@ -158,8 +158,7 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
- 
-
+    
     public function actionProfile()
     {
        
@@ -172,7 +171,4 @@ class SiteController extends Controller
             return $this->render('profile',['model'=>$model]);
 
     }
-
- 
-
 }
