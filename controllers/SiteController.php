@@ -70,7 +70,7 @@ class SiteController extends Controller
         
         if ($model->load(Yii::$app->request->post()) ) {
             $identity = Member::findOne(['email' => $model->email]);
-            if($identity && Yii::$app->getSecurity()->validatePassword($model->password, $identity->password)){
+            if($identity && Yii::$app->getSecurity()->validatePassword($model->password, $identity->password) && !$identity->istrash){
                 Yii::$app->user->login($identity);
                 return $this->goHome();
             }
@@ -158,8 +158,22 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-    public function actionProfile(){
-        return $this->render('profile');
+    
+    public function actionProfile()
+    {
+       
+       $model = Member::find()->where(['id'=>Yii::$app->user->id])->one();
+       if($model->load(Yii::$app->request->post()) && $model->validate())
+        {
+            $model->save();
+        }
+        else
+            return $this->render('profile',['model'=>$model]);
+
     }
- 
+
+    public function actionChangepassword()
+    {
+        
+    }
 }

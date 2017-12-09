@@ -28,6 +28,7 @@ class Member extends \yii\db\ActiveRecord implements IdentityInterface
             [['age','first_name', 'last_name', 'email', 'password','address','gender'],'required'],
             ['email', 'email'],
             ['email','unique'],
+            [['istrash'],'string'],
         ];
     }
 
@@ -47,6 +48,7 @@ class Member extends \yii\db\ActiveRecord implements IdentityInterface
             'gender' => 'Gender',
             'lat' => 'Lat',
             'lng' => 'Lng',
+            'istrash' => 'Istrash',
         ];
     }
 

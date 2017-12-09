@@ -18,6 +18,7 @@ use yii\helpers\Json;
 use yii\web\IdentityInterface;
 use app\models\User;
 use app\models\Votedcomments;
+use yii\db\ActiveQuery;
 
 /* @var $this yii\web\View */
 
@@ -141,6 +142,8 @@ $this->title = 'WEBTURTLES';
 
 </div>
 
+</div>
+
 <div class="topul div-center">
     <h2 style="font-family: Bungee">TOP 5 </h4>
     <?php
@@ -223,6 +226,7 @@ $this->title = 'WEBTURTLES';
 
         // Adds a marker at the center of the map.
         addMarker(city);
+       
       }
 
       // Adds a marker to the map and push to the array.
@@ -233,6 +237,8 @@ $this->title = 'WEBTURTLES';
         });
         markers.push(marker);
       }
+
+      
 
       // Sets the map on all markers in the array.
       function setMapOnAll(map) {
