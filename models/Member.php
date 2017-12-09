@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
@@ -131,14 +132,5 @@ class Member extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->getAuthKey() === $authKey;
     }
-    public function beforeSave($insert)
-    {
-        if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) {
-                $this->auth_key = \Yii::$app->security->generateRandomString();
-            }
-            return true;
-        }
-        return false;
-    }
+  
 }

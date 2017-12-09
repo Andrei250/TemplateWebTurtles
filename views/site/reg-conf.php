@@ -9,9 +9,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
-    <h1> HELLO! :D </h1>
+    <br>
+    <br>
+    <h2> HELLO! :D </h2>
     
 
 </div>
-
 

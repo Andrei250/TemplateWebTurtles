@@ -22,6 +22,7 @@ class Comments extends \yii\db\ActiveRecord
             [['address'], 'string', 'max' => 255],
             [['member_id'], 'exist', 'skipOnError' => true, 'targetClass' => Member::className(), 'targetAttribute' => ['member_id' => 'id']],
             [['info','address'],'required'],
+            [['istrash'],'string'],
         ];
     }
 

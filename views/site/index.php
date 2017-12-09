@@ -5,6 +5,17 @@ use app\models\Comments;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+use yii\web\Response;
+use yii\filters\VerbFilter;
+use app\models\LoginForm;
+use app\models\ContactForm;
+use yii\db\ActiveRecord;
+use yii\db\ActiveQueryInterface;
+use yii\helpers\Json;
+use yii\web\IdentityInterface;
+use app\models\User;
 /* @var $this yii\web\View */
 
 $this->title = 'WEBTURTLES';
@@ -83,31 +94,34 @@ $this->title = 'WEBTURTLES';
    $comments=Comments::find()->all();
 
    foreach ($comments as $comment) {
+  if($comment->istrash != '1'){
     $member=Member::find()->where(['id'=>$comment->member_id])->one();
      ?>
       <div class="comm-content">
           <p style="float:left; font-size:10px">Author:<?= $member->first_name.' '.$member->last_name ?></p>
           <br>
+          <br>
           <p style="float: left; font-size: 16px; text-align: justify; word-break: break-all;"><?= $comment->info;  ?></p>
           <br>
           <p style="float: right; font-size: 16px;"> Location: <?= $comment->address ?> </p>
           <br>
-          <br>
+       <?php
+        if($comment->member_id != Yii::$app->user->id)
+        {
+          ?>
+              <div class="vote">
+                  <a href="#" class="vote-btn"><i class="fa fa-check" aria-hidden="true"></i></a>
+                  <a href="#" class="vote-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
+              </div>
+          <?php
+            }
+          ?>
       </div>
 
      <?php
    }
+ }
    ?>  
-
-</div>
-
-<div id="all">
-  <div id="bar">
-    <div id="likes"></div>
-    <div id="dislikes"></div>
-  </div>
-  <input type="button" value="Like" id="likeButton" onclick="like();"/>
-  <input type="button" value="Dislike" id="dislikeButton" onclick="dislike();"/>
 
 </div>
 </body>

@@ -94,7 +94,6 @@ class SiteController extends Controller
             $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
             $response = file_get_contents($url);
             $json = json_decode($response,true);
-         
             $lat = $json['results'][0]['geometry']['location']['lat'];
             $lng = $json['results'][0]['geometry']['location']['lng'];
          
@@ -105,10 +104,8 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $check = Member::findOne(["email" => $model->email]);
-         
             if($check)
             {
-                die(var_dump($model->getErrors()));
                 return $this->render('register', ['model' => $model]);
             }
             else
@@ -121,21 +118,19 @@ class SiteController extends Controller
 
                 $model->password=Yii::$app->getSecurity()->generatePasswordHash($model->password);
 
+
                 $coords = getCoordinates($model->address);
 
                 $model->lat = $coords[0];
                 $model->lng = $coords[1];
 
-                $model->save();
 
-                return $this->render('reg-conf');
+                $model->save();
+                return $this->render('reg-conf.php');
             }
 
-
-       
-
         } else {
-            // either the page is initially displayed or there is some validation error
+           
             return $this->render('register', ['model' => $model]);
         }
 
