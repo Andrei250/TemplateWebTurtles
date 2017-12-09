@@ -189,13 +189,17 @@ $this->title = 'WEBTURTLES';
       var markers = [];
 
       function initMap() {
+        
+    
+
         var city = {lat: 45.75, lng: 21.226};
 
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
+          zoom: 3,
           center: city,
           mapTypeId: 'terrain'
         });
+
 
         // This event listener will call addMarker() when the map is clicked.
         map.addListener('click', function(event) {
@@ -204,11 +208,13 @@ $this->title = 'WEBTURTLES';
 
         // Adds a marker at the center of the map.
         addMarker(city);
-       
+
       }
 
       // Adds a marker to the map and push to the array.
       function addMarker(location) {
+
+
         var marker = new google.maps.Marker({
           position: location,
           map: map
@@ -220,6 +226,7 @@ $this->title = 'WEBTURTLES';
 
       // Sets the map on all markers in the array.
       function setMapOnAll(map) {
+
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(map);
         }
@@ -232,6 +239,7 @@ $this->title = 'WEBTURTLES';
 
       // Shows any markers currently in the array.
       function showMarkers() {
+         
         setMapOnAll(map);
       }
 
@@ -244,4 +252,7 @@ $this->title = 'WEBTURTLES';
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6gbdwEmwQ3d2_-Q-qfNFrrjwl4-79BAM&callback=initMap">
     </script>
+
+    
+   
  
