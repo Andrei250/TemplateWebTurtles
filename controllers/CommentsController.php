@@ -16,6 +16,8 @@ use yii\web\IdentityInterface;
 use app\models\User;
 use app\models\Comments;
 use app\models\Votedcomments;
+use app\models\Locations;
+
 class CommentsController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -33,6 +35,10 @@ class CommentsController extends \yii\web\Controller
 	 		$model->member_id = Yii::$app->user->id;
 	 		if($model->save())
 	 		{
+                $model2 = new Locations;
+                $model2->comm_id= $model->id;
+                $model2->name=$model->address;
+                $model2->save();
 	 			return $this->redirect(['site/index']);
 	 		}
 	 		else
