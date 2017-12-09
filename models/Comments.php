@@ -37,6 +37,7 @@ class Comments extends \yii\db\ActiveRecord
             'nr_likes' => 'Nr Likes',
             'nr_dislikes' => 'Nr Dislikes',
             'date' => 'Date',
+            'istrash' =>'Istrash',
         ];
     }
 

@@ -18,6 +18,7 @@ use yii\helpers\Json;
 use yii\web\IdentityInterface;
 use app\models\User;
 use app\models\Votedcomments;
+use yii\db\ActiveQuery;
 
 /* @var $this yii\web\View */
 
@@ -119,7 +120,8 @@ $this->title = 'WEBTURTLES';
                   <a href="<?= Url::to(['comments/minus','id'=>$comment->id]);?>" class="vote-btn" style="color:red;"><i class="fa fa-times " aria-hidden="true"></i></a>
               </div>
           <?php
-            } else if(($comment->member_id == Yii::$app->user->id || Member::find()->where(['id'=>Yii::$app->user->id, 'isadmin'=>'1']) ) && !Yii::$app->user->isGuest)
+            } 
+            if(($comment->member_id == Yii::$app->user->id || Member::find()->where(['id'=>Yii::$app->user->id, 'isadmin'=>'1'])->one() ) && !Yii::$app->user->isGuest)
             {
               ?>
                    <a href="<?= Url::to(['comments/delete','id'=>$comment->id]);?>" class="vote-btn" style="color:red;"><i class="fa fa-trash " aria-hidden="true"></i></a>
@@ -136,6 +138,7 @@ $this->title = 'WEBTURTLES';
    ?>  
 
 </div>
+
 </div>
 
 
@@ -201,6 +204,7 @@ $this->title = 'WEBTURTLES';
 
         // Adds a marker at the center of the map.
         addMarker(city);
+       
       }
 
       // Adds a marker to the map and push to the array.
@@ -211,6 +215,8 @@ $this->title = 'WEBTURTLES';
         });
         markers.push(marker);
       }
+
+      
 
       // Sets the map on all markers in the array.
       function setMapOnAll(map) {

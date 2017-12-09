@@ -45,6 +45,7 @@ AppAsset::register($this);
   <?php
   if (!Yii::$app->user->isGuest){
     ?>
+    <a  style="font-family: Bungee" href="<?= Url::to(['site/profile']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Profile</a>
   <a  style="font-family: Bungee" href="<?= Url::to(['site/logout']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
   <?php } else {
     ?>
@@ -59,6 +60,7 @@ AppAsset::register($this);
     <?php
   if (!Yii::$app->user->isGuest){
     ?>
+    <a  style="font-family: Bungee" href="<?= Url::to(['site/profile']);?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Profile</a>
     <a href="<?= Url::to(['/site/logout']); ?>" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal">Logout</a>
     <?php } else {
     ?>

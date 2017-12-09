@@ -221,3 +221,14 @@ buttons fade in as a visual cue for the user */
     text-align: center;
     height: 500px;
 }
+
+.site-profile{
+    width: 50%;
+    margin: 50px auto;
+    background-color: white;
+    color:black;
+    box-shadow: 5px 5px 8px black;
+    border:1px solid grey;
+    position: relative;
+    height: auto;
+}
