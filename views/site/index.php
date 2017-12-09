@@ -119,8 +119,15 @@ $this->title = 'WEBTURTLES';
                   <a href="<?= Url::to(['comments/minus','id'=>$comment->id]);?>" class="vote-btn" style="color:red;"><i class="fa fa-times " aria-hidden="true"></i></a>
               </div>
           <?php
+            } else if($comment->member_id == Yii::$app->user->id && !Yii::$app->user->isGuest)
+            {
+              ?>
+                   <a href="<?= Url::to(['comments/delete','id'=>$comment->id]);?>" class="vote-btn" style="color:red;"><i class="fa fa-trash " aria-hidden="true"></i></a>
+              <?php
             }
-          ?>
+            ?>
+
+
       </div>
 
      <?php

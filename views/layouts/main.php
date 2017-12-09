@@ -34,7 +34,7 @@ AppAsset::register($this);
 <body id="myPage">
 <?php $this->beginBody() ?>
 
-<div class="wrap">
+<div class="wrap" style="padding-bottom:0px;">
 
 
 <div class="w3-top">
