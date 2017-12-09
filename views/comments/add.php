@@ -8,8 +8,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
+    <br>
 
-    <p>Please fill out the following fields to login:</p>
+    <p style="font-size: 20">Write a comment!</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -29,7 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::submitButton('Add Comment', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             </div>
         </div>
-
+        <br>
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<body class="background0"></body>

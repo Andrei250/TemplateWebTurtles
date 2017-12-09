@@ -102,25 +102,36 @@ $this->title = 'WEBTURTLES';
     $member=Member::find()->where(['id'=>$comment->member_id])->one();
      ?>
       <div class="comm-content">
-          <p style="float:left; font-size:10px">Author: <?= $member->first_name.' '.$member->last_name ?></p>
-          <br>
-          <br>
-          <p style="float: left; font-size: 16px; text-align: justify; word-break: break-all;"><?= $comment->info;  ?></p>
-          <br>
-          <p style="float: right; font-size: 16px;"> Location: <?= $comment->address ?> </p>
-          <br>
-       <?php
+        <br><div>
+          <p style="float:left; font-size:14px; color: #888; font-size: 14px; margin: 0 0 10px;">Author: <?= $member->first_name.' '.$member->last_name ?></p>
+          <p style="float:right; font-size:16px; color: #888; font-size: 14px; margin: 0 0 0;"> Location: <?= $comment->address ?> </p>
+
+          <br><br>
+          <p style="float: left; font-size: 16px; text-align: justify; word-break: break-all;"><?= $comment->info;  ?></p>   
+          <br> 
+        </div>
+      <div><?php
         $check = Votedcomments::find()->where(['member_id'=>Yii::$app->user->id,'comm_id'=>$comment->id])->one();
         if($comment->member_id != Yii::$app->user->id && !$check && !Yii::$app->user->isGuest)
         {
           ?>
               <div class="vote">
-                  <a href="<?= Url::to(['comments/plus','id'=>$comment->id]);?>" class="vote-btn" style="color:green;"><i class="fa fa-check " aria-hidden="true"></i></a>
-                  <a href="<?= Url::to(['comments/minus','id'=>$comment->id]);?>" class="vote-btn" style="color:red;"><i class="fa fa-times " aria-hidden="true"></i></a>
+                  <a style="float:right" href="<?= Url::to(['comments/plus','id'=>$comment->id]);?>" class="vote-btn" style="color: ;"><i class="fa fa-check " aria-hidden="true"></i></a>
+                  <a style="float:right" href="<?= Url::to(['comments/minus','id'=>$comment->id]);?>" class="vote-btn" style="color:red;"><i class="fa fa-times " aria-hidden="true"></i></a><br>
               </div>
+              
+              
           <?php
+            }  if(($comment->member_id == Yii::$app->user->id || Member::find()->where(['id'=>Yii::$app->user->id, 'isadmin'=>'1'])->one() ) && !Yii::$app->user->isGuest)
+            {
+              ?>
+                   <a style="float:right" href="<?= Url::to(['comments/delete','id'=>$comment->id]);?>" class="vote-btn" style="color:black;"><i class="fa fa-trash " aria-hidden="true"></i></a><br>
+              <?php
             }
-          ?>
+
+            ?>
+          </div><hr>
+
       </div>
 
      <?php
@@ -129,41 +140,27 @@ $this->title = 'WEBTURTLES';
    ?>  
 
 </div>
-<script>
-var likes=0, dislikes=0;
 
-//Functions to increase likes and immediately calculate bar widths
-function like(){
-  likes++;
-  calculateBar();
-}
-function dislike(){
-  dislikes++;
-  calculateBar();
-}
+<div class="topul div-center">
+    <h2 style="font-family: Bungee">TOP 5 </h4>
+    <?php
+    $i=0;
+    $orders = Comments::find()->orderBy(['nr_likes'=>SORT_DESC])->all();
+    foreach ($orders as $order  ) {
+      if($order->istrash == '0' && $i<5){
+        $i++;
+    ?>
+      <h3 class="elemente-top" style="font-family: Bungee"><?=$i?>. <?=$order->address  ?></h2>
+    <?php
+    }
+    }
 
-//Calculates bar widths
-function calculateBar(){
-  var total= likes+dislikes;
-    //Simple math to calculate percentages
-  var percentageLikes=(likes/total)*100;
-  var percentageDislikes=(dislikes/total)*100;
+    ?>
 
-    //We need to apply the widths to our elements
-  document.getElementById('likes').style.width=percentageLikes.toString()+"%";
-  document.getElementById('dislikes').style.width=percentageDislikes.toString()+"%";
-    
-    //We add the numbers on the buttons, just to show how to
-    document.getElementById('likeButton').value="Like ("+likes.toString()+")";
-    document.getElementById('dislikeButton').value="Disike ("+dislikes.toString()+")";
-
-}
-
-calculateBar();
-</script>
+</div>
 </div>
 
-
+<br>
  <!--Harta-->
  
   <head>

@@ -36,7 +36,6 @@ AppAsset::register($this);
 
 <div class="wrap" style="padding-bottom: 0px;">
 
-
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
