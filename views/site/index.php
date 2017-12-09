@@ -16,6 +16,7 @@ use yii\db\ActiveQueryInterface;
 use yii\helpers\Json;
 use yii\web\IdentityInterface;
 use app\models\User;
+use app\models\Votedcomments;
 /* @var $this yii\web\View */
 
 $this->title = 'WEBTURTLES';
@@ -86,7 +87,7 @@ $this->title = 'WEBTURTLES';
 <body>
 <?php if(!Yii::$app->user->isGuest){
   ?>
-<a href="<?= Url::to(['comments/add']);?>" class="btn btn-success" style="margin :5px;">Add a Comment</a>
+<a href="<?= Url::to(['comments/add']);?>" class="btn btn-success" style="margin:5px auto;">Add a Comment</a>
 <?php } ?>
 <div id="comments">
 
@@ -98,7 +99,7 @@ $this->title = 'WEBTURTLES';
     $member=Member::find()->where(['id'=>$comment->member_id])->one();
      ?>
       <div class="comm-content">
-          <p style="float:left; font-size:10px">Author:<?= $member->first_name.' '.$member->last_name ?></p>
+          <p style="float:left; font-size:10px">Author: <?= $member->first_name.' '.$member->last_name ?></p>
           <br>
           <br>
           <p style="float: left; font-size: 16px; text-align: justify; word-break: break-all;"><?= $comment->info;  ?></p>
@@ -106,12 +107,13 @@ $this->title = 'WEBTURTLES';
           <p style="float: right; font-size: 16px;"> Location: <?= $comment->address ?> </p>
           <br>
        <?php
-        if($comment->member_id != Yii::$app->user->id)
+        $check = Votedcomments::find()->where(['member_id'=>Yii::$app->user->id,'comm_id'=>$comment->id])->one();
+        if($comment->member_id != Yii::$app->user->id && !$check)
         {
           ?>
               <div class="vote">
-                  <a href="#" class="vote-btn"><i class="fa fa-check" aria-hidden="true"></i></a>
-                  <a href="#" class="vote-btn"><i class="fa fa-times" aria-hidden="true"></i></a>
+                  <a href="<?= Url::to(['comments/plus','id'=>$comment->id]);?>" class="vote-btn" style="color:green;"><i class="fa fa-check " aria-hidden="true"></i></a>
+                  <a href="<?= Url::to(['comments/minus','id'=>$comment->id]);?>" class="vote-btn" style="color:red;"><i class="fa fa-times " aria-hidden="true"></i></a>
               </div>
           <?php
             }
