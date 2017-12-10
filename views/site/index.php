@@ -19,6 +19,7 @@ use yii\web\IdentityInterface;
 use app\models\User;
 use app\models\Votedcomments;
 use yii\db\ActiveQuery;
+use app\models\CommComments;
 
 /* @var $this yii\web\View */
 
@@ -141,10 +142,48 @@ $this->title = 'WEBTURTLES';
 
             ?>
           </div><hr>
+          
+      </div>
+     <?php
+     $comms=CommComments::find()->where(['comm_id'=>$comment->id])->all();
+     foreach ($comms as $comm) {
+        if($comm->is_trash !='1')
+        { $member=Member::find()->where(['id'=>$comment->member_id])->one();
+            ?>
+
+            <div class="comm-content-comm">
+        <br><div>
+          <p style="float:left; font-size:14px; color: #888; font-size: 14px; margin: 0 0 10px;">Author: <?= $member->first_name.' '.$member->last_name ?></p>
+
+          <br><br>
+          <p style="float: left; font-size: 16px; text-align: justify; word-break: break-all;"><?= $comm->content;  ?></p>   
+          <br> 
+        </div>
+      <div><?php
+       if(($comm->member_id == Yii::$app->user->id || Member::find()->where(['id'=>Yii::$app->user->id, 'isadmin'=>'1'])->one() ) && !Yii::$app->user->isGuest)
+            {
+              ?>
+                   <a style="float:right" href="<?= Url::to(['comm-comments/delete','id'=>$comm->id]);?>" class="vote-btn" style="color:black;"><i class="fa fa-trash " aria-hidden="true"></i></a><br>
+              <?php
+            }
+
+            ?>
+          </div><hr>
 
       </div>
+  
+          <?php
+        }
 
-     <?php
+
+
+     }
+     ?>
+     <div>
+          <a href="<?= Url::to(['comm-comments/add','id'=>$comment->id]);?>" class="btn btn-success" style="margin:5px; float:left;">Add Comment for this Issue</a>
+      </div>
+      <br>
+      <?php
    }
  }
    ?>  
