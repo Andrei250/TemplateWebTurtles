@@ -93,6 +93,15 @@ $this->title = 'WEBTURTLES';
   ?>
 <a href="<?= Url::to(['comments/add']);?>" class="btn btn-success" style="margin:5px auto;">Add a Comment</a>
 <?php } ?>
+
+<?php if(!Yii::$app->user->isGuest ){
+  $model=Member::find()->where(['id'=>Yii::$app->user->id])->one();
+  if($model->isadmin=='1'){
+  ?>
+<a href="<?= Url::to(['site/memberlist']);?>" class="btn btn-success" style="margin:5px auto;">MemberList</a>
+<?php } 
+}
+?>
 <div id="comments">
 
 <?php
@@ -143,12 +152,15 @@ $this->title = 'WEBTURTLES';
 </div>
 
 </div>
-
+<?php
+$orders = Comments::find()->orderBy(['nr_likes'=>SORT_DESC])->all();
+  if($orders){
+    ?>
 <div class="topul div-center">
     <h2 style="font-family: Bungee">TOP 5 </h4>
     <?php
     $i=0;
-    $orders = Comments::find()->orderBy(['nr_likes'=>SORT_DESC])->all();
+    
     foreach ($orders as $order  ) {
       if($order->istrash == '0' && $i<5){
         $i++;
@@ -161,6 +173,9 @@ $this->title = 'WEBTURTLES';
     ?>
 
 </div>
+<?php
+}
+?>
 </div>
 
 <br>

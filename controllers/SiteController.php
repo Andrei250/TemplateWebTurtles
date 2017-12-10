@@ -171,4 +171,18 @@ class SiteController extends Controller
             return $this->render('profile',['model'=>$model]);
 
     }
+
+    public function actionMemberlist()
+    {
+        return $this->render('memberlist');
+    }
+
+    public function actionDelete($id)
+    {
+        $model = Member::find()->where(['id'=>$id])->one();
+        $model->istrash='1';
+        $model->update(false);
+        return $this->redirect(['site/memberlist']);
+    }
+
 }

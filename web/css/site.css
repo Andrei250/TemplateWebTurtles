@@ -244,3 +244,11 @@ buttons fade in as a visual cue for the user */
     position: relative;
     height: auto;
 }
+.member-list{
+    width: 80%;
+    margin: 10px auto;
+    overflow: auto;
+    position: relative;
+
+}
+
