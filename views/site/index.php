@@ -178,12 +178,15 @@ $this->title = 'WEBTURTLES';
 
 
      }
+     if(!Yii::$app->user->isGuest)
+     {
      ?>
      <div>
           <a href="<?= Url::to(['comm-comments/add','id'=>$comment->id]);?>" class="btn btn-success" style="margin:5px; float:left;">Add Comment for this Issue</a>
       </div>
       <br>
       <?php
+    }
    }
  }
    ?>  
