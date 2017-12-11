@@ -27,16 +27,6 @@ use app\models\Locations;
 $this->title = 'WEBTURTLES';
 ?>
 <?php 
-   // function getCoordinates($address){
-   //          $address = urlencode($address);
-   //          $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=" . $address;
-   //          $response = file_get_contents($url);
-   //          $json = json_decode($response,true);
-   //          $lat = $json['results'][0]['geometry']['location']['lat'];
-   //          $lng = $json['results'][0]['geometry']['location']['lng'];
-         
-   //          return array($lat, $lng);
-   //      }
 
 
       $response = array();
@@ -56,7 +46,6 @@ $this->title = 'WEBTURTLES';
     
 
      ?>
-  }
 <div class="site-index myPage">
     <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -309,7 +298,7 @@ $orders = Comments::find()->orderBy(['nr_likes'=>SORT_DESC])->all();
             address = ceva[i];
             codeAddress(address);
         }
-        console.log(markers);
+
 
       }
       function codeAddress(address) {
