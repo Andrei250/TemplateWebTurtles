@@ -15,7 +15,7 @@ use yii\helpers\Json;
 use yii\web\IdentityInterface;
 use app\models\User;
 use app\models\CommComments;
-use app\model\Comments;
+use app\models\Comments;
 
 class CommCommentsController extends \yii\web\Controller
 {
@@ -26,11 +26,11 @@ class CommCommentsController extends \yii\web\Controller
 
     public function actionDelete($id)
     {
-        $model = ComComments::find()->where(['id'=>$id])->one();
+        $model = CommComments::find()->where(['id'=>$id])->one();
        
-        if($model->istrash === '0')
+        if($model->is_trash === '0')
         {
-            $model->istrash = '1';
+            $model->is_trash = '1';
             $model->update();
         }
         return $this->redirect(['site/index']);
